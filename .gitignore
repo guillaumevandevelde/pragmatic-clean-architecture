@@ -1,0 +1,70 @@
+# Check out https://github.com/github/gitignore for usefull .gitignore templates
+
+# Build files
+**/build/
+**/dist/
+**/target/
+
+# Compiled class file
+*.class
+*.classpath
+
+# Libraries
+*.lib
+
+# Shared objects (inc. Windows DLLs)
+*.dll
+
+# Executables
+*.exe
+
+# Debug & Log files
+*.debug
+*.debug.*
+*.log
+*.log.*
+
+# Package Files #
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+*.swp
+*.*~
+project.lock.json
+.DS_Store
+*.pyc
+nupkg/
+
+# Visual Studio Code
+.vscode
+
+# Rider
+.idea
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+build/
+bld/
+[Bb]in/
+[Oo]bj/
+[Oo]ut/
+msbuild.log
+msbuild.err
+msbuild.wrn
+[Oo]bj

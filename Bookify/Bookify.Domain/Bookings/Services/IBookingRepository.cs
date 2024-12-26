@@ -1,8 +1,7 @@
-﻿using Bookify.Domain.Apartments;
-using Bookify.Domain.Apartments.Entities;
+﻿using Bookify.Domain.Apartments.Entities;
 using Bookify.Domain.Bookings.Entities;
 
-namespace Bookify.Domain.Bookings;
+namespace Bookify.Domain.Bookings.Services;
 
 public interface IBookingRepository
 {

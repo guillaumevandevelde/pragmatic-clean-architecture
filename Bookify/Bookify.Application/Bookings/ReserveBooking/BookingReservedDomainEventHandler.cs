@@ -1,9 +1,8 @@
 ﻿using Bookify.Application.Abstractions.Email;
 using Bookify.Domain.Bookings;
+using Bookify.Domain.Bookings.Entities;
 using Bookify.Domain.Bookings.Events;
-using Bookify.Domain.Bookings.Services;
 using Bookify.Domain.Users;
-using Bookify.Domain.Users.Interfaces;
 using MediatR;
 
 namespace Bookify.Application.Bookings.ReserveBooking;

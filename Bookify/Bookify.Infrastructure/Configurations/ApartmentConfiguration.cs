@@ -1,4 +1,5 @@
-﻿using Bookify.Domain.Apartments.Entities;
+﻿using Bookify.Domain.Apartments;
+using Bookify.Domain.Shared;
 using Bookify.Domain.Shared.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -17,11 +18,11 @@ internal sealed class ApartmentConfiguration : IEntityTypeConfiguration<Apartmen
 
         builder.Property(apartment => apartment.Name)
             .HasMaxLength(200)
-            .HasConversion(name => name.value, value => new Name(value));
+            .HasConversion(name => name.Value, value => new Name(value));
 
         builder.Property(apartment => apartment.Description)
             .HasMaxLength(2000)
-            .HasConversion(description => description.value, value => new Description(value));
+            .HasConversion(description => description.Value, value => new Description(value));
 
         builder.OwnsOne(apartment => apartment.Price, priceBuilder =>
         {

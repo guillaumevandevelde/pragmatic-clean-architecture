@@ -1,4 +1,6 @@
-﻿namespace Bookify.Domain.Bookings.Entities;
+﻿using System.Data;
+
+namespace Bookify.Domain.Bookings.Entities;
 
 public record DateRange
 {
@@ -7,14 +9,16 @@ public record DateRange
     }
 
     public DateOnly Start { get; init; }
+
     public DateOnly End { get; init; }
-    public int LenghtInDays => End.DayNumber - Start.DayNumber;
-    
+
+    public int LengthInDays => End.DayNumber - Start.DayNumber;
+
     public static DateRange Create(DateOnly start, DateOnly end)
     {
         if (start > end)
         {
-            throw new ArgumentException("Start date must be before end date");
+            throw new DataException("End date precedes start date");
         }
 
         return new DateRange
@@ -23,5 +27,4 @@ public record DateRange
             End = end
         };
     }
-    
 }

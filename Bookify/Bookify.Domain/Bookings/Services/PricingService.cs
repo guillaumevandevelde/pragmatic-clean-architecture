@@ -10,7 +10,7 @@ public class PricingService
     {
         var currency = apartment.Price.Currency;
         var priceForPeriod = new Money(
-            apartment.Price.Amount * period.LenghtInDays,
+            apartment.Price.Amount * period.LengthInDays,
             currency
         );
 

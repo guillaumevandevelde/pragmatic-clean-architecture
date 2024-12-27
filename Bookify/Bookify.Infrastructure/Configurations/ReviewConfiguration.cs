@@ -1,10 +1,8 @@
 ﻿using Bookify.Domain.Apartments;
-using Bookify.Domain.Apartments.Entities;
 using Bookify.Domain.Bookings;
 using Bookify.Domain.Bookings.Entities;
 using Bookify.Domain.Reviews;
 using Bookify.Domain.Users;
-using Bookify.Domain.Users.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

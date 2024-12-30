@@ -1,3 +1,3 @@
 ﻿namespace Bookify.Domain.Apartments.Entities;
 
-public record Name(string value);
+public record Name(string Value);

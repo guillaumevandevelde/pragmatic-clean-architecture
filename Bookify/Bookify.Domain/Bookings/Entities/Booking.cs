@@ -1,5 +1,6 @@
 ﻿using Bookify.Domain.Abstractions;
 using Bookify.Domain.Apartments;
+using Bookify.Domain.Apartments.Entities;
 using Bookify.Domain.Bookings.Events;
 using Bookify.Domain.Shared;
 using Bookify.Domain.Shared.Entities;

@@ -2,6 +2,5 @@
 
 namespace Bookify.Infrastructure.Authorization;
 
-[AttributeUsage(AttributeTargets.Class)]
-
+[AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
 public sealed class HasPermissionAttribute(string permission) : AuthorizeAttribute(permission);

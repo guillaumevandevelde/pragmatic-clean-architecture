@@ -1,8 +1,8 @@
 ﻿using Bookify.Application.Abstractions.Clock;
 using Bookify.Application.Abstractions.Messaging;
 using Bookify.Domain.Abstractions;
-using Bookify.Domain.Bookings;
 using Bookify.Domain.Bookings.Entities;
+using Bookify.Domain.Bookings.Interfaces;
 
 namespace Bookify.Application.Bookings.CancelBooking;
 

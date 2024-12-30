@@ -2,7 +2,7 @@
 
 public enum Amenity
 {
-    Wifi = 1,
+    WiFi = 1,
     AirConditioning = 2,
     Parking = 3,
     PetFriendly = 4,
@@ -11,5 +11,5 @@ public enum Amenity
     Spa = 7,
     Terrace = 8,
     MountainView = 9,
-    GardenView = 10,
+    GardenView = 10
 }

@@ -1,4 +1,5 @@
 ﻿using Bookify.Domain.Apartments;
+using Bookify.Domain.Apartments.Entities;
 using Bookify.Domain.Shared;
 using Bookify.Domain.Shared.Entities;
 using Microsoft.EntityFrameworkCore;

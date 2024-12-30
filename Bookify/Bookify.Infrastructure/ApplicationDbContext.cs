@@ -1,13 +1,18 @@
 ﻿using Bookify.Application.Abstractions.Clock;
+using Bookify.Application.Abstractions.Data;
 using Bookify.Application.Exceptions;
 using Bookify.Domain.Abstractions;
+using Bookify.Domain.Apartments.Entities;
+using Bookify.Domain.Bookings.Entities;
+using Bookify.Domain.Reviews;
+using Bookify.Domain.Users;
 using Bookify.Infrastructure.Outbox;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 
 namespace Bookify.Infrastructure;
 
-public sealed class ApplicationDbContext : DbContext, IUnitOfWork
+public sealed class ApplicationDbContext : DbContext, IUnitOfWork, IApplicationDbContext
 {
     private static readonly JsonSerializerSettings JsonSerializerSettings = new()
     {
@@ -15,6 +20,14 @@ public sealed class ApplicationDbContext : DbContext, IUnitOfWork
     };
 
     private readonly IDateTimeProvider _dateTimeProvider;
+
+    public DbSet<Apartment> Apartments { get; private set; }
+
+    public DbSet<Booking> Bookings { get; private set; }
+
+    public DbSet<Review> Reviews { get; private set; }
+
+    public DbSet<User> Users { get; private set; }
 
     public ApplicationDbContext(
         DbContextOptions options,
@@ -37,7 +50,7 @@ public sealed class ApplicationDbContext : DbContext, IUnitOfWork
         {
             AddDomainEventsAsOutboxMessages();
 
-            var result = await base.SaveChangesAsync(cancellationToken);
+            int result = await base.SaveChangesAsync(cancellationToken);
 
             return result;
         }
@@ -54,7 +67,7 @@ public sealed class ApplicationDbContext : DbContext, IUnitOfWork
             .Select(entry => entry.Entity)
             .SelectMany(entity =>
             {
-                var domainEvents = entity.GetDomainEvents();
+                IReadOnlyList<IDomainEvent> domainEvents = entity.GetDomainEvents();
 
                 entity.ClearDomainEvents();
 

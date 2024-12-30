@@ -1,10 +1,8 @@
 ﻿namespace Bookify.Domain.Apartments.Entities;
 
-public record Address
-(
+public record Address(
     string Country,
     string State,
     string ZipCode,
     string City,
-    string Street
-);
+    string Street);

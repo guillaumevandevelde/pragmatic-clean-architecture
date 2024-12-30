@@ -3,32 +3,21 @@ using Bookify.Application.Abstractions.Messaging;
 using Bookify.Domain.Abstractions;
 using Bookify.Domain.Bookings;
 using Bookify.Domain.Bookings.Entities;
+using Bookify.Domain.Bookings.Interfaces;
 using Bookify.Domain.Reviews;
 
 namespace Bookify.Application.Reviews.AddReview;
 
-internal sealed class AddReviewCommandHandler : ICommandHandler<AddReviewCommand>
+internal sealed class AddReviewCommandHandler(
+    IBookingRepository bookingRepository,
+    IReviewRepository reviewRepository,
+    IUnitOfWork unitOfWork,
+    IDateTimeProvider dateTimeProvider)
+    : ICommandHandler<AddReviewCommand>
 {
-    private readonly IBookingRepository _bookingRepository;
-    private readonly IReviewRepository _reviewRepository;
-    private readonly IUnitOfWork _unitOfWork;
-    private readonly IDateTimeProvider _dateTimeProvider;
-
-    public AddReviewCommandHandler(
-        IBookingRepository bookingRepository,
-        IReviewRepository reviewRepository,
-        IUnitOfWork unitOfWork,
-        IDateTimeProvider dateTimeProvider)
-    {
-        _bookingRepository = bookingRepository;
-        _reviewRepository = reviewRepository;
-        _unitOfWork = unitOfWork;
-        _dateTimeProvider = dateTimeProvider;
-    }
-
     public async Task<Result> Handle(AddReviewCommand request, CancellationToken cancellationToken)
     {
-        var booking = await _bookingRepository.GetByIdAsync(request.BookingId, cancellationToken);
+        var booking = await bookingRepository.GetByIdAsync(request.BookingId, cancellationToken);
 
         if (booking is null)
         {
@@ -46,16 +35,16 @@ internal sealed class AddReviewCommandHandler : ICommandHandler<AddReviewCommand
             booking,
             ratingResult.Value,
             new Comment(request.Comment),
-            _dateTimeProvider.UtcNow);
+            dateTimeProvider.UtcNow);
 
         if (reviewResult.IsFailure)
         {
             return Result.Failure(reviewResult.Error);
         }
 
-        _reviewRepository.Add(reviewResult.Value);
+        reviewRepository.Add(reviewResult.Value);
 
-        await _unitOfWork.SaveChangesAsync(cancellationToken);
+        await unitOfWork.SaveChangesAsync(cancellationToken);
 
         return Result.Success();
     }

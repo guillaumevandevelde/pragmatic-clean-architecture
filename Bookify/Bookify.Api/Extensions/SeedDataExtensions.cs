@@ -1,6 +1,7 @@
 ﻿using Bogus;
 using Bookify.Application.Abstractions.Data;
 using Bookify.Domain.Apartments;
+using Bookify.Domain.Apartments.Entities;
 using Dapper;
 
 namespace Bookify.Api.Extensions;
